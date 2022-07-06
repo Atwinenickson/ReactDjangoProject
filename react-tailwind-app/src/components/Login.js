@@ -50,8 +50,7 @@ export default function Login() {
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-    <div className="-space-y-px">
-    {errorMessage && (
+          {errorMessage && (
           <div role="alert">
             <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
               Danger
@@ -61,6 +60,7 @@ export default function Login() {
             </div>
           </div>
         )}
+    <div className="-space-y-px">
         {
             fields.map(field=>
                     <Input
