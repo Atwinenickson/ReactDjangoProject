@@ -13,7 +13,7 @@ from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, Token
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('phone', "first_name", "last_name")
+        fields = ('username', "first_name", "last_name")
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,10 +24,10 @@ class GroupSerializer(serializers.ModelSerializer):
 class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('phone', 'password')
+        fields = ('username', 'password')
 
 class SignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('phone', 'password')
+        fields = ('username', 'password')
         write_only_fields = ('password',)
