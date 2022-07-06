@@ -3,12 +3,27 @@ import { loginFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "./Input";
-
+import OAuth2Login from 'react-simple-oauth2-login';
 
 
 const fields=loginFields;
 let fieldsState = {};
 fields.forEach(field=>fieldsState[field.id]='');
+
+const onSuccess = response => console.log(response);
+const onFailure = response => console.error(response);
+
+async function loginUser(credentials) {
+    return (
+        <OAuth2Login
+        authorizationUrl="http://localhost:8000/o/applications/2/"
+        responseType="token"
+        clientId="CRFJUn94EBELD1B0pobe8JHLxPViBPmhii6nDP2M"
+        redirectUri="http://localhost:3000/oauth-callback"
+        onSuccess={onSuccess}
+        onFailure={onFailure}/>
+    )
+   }
 
 export default function Login() {
     const [loginState,setLoginState]=useState(fieldsState);
@@ -17,15 +32,26 @@ export default function Login() {
         setLoginState({...loginState,[e.target.id]:e.target.value})
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = async e => {
         e.preventDefault();
-        authenticateUser();
-    }
-
-    //Handle Login API Integration here
-    const authenticateUser = () =>{
-
-    }
+        const response = await loginUser({
+          username,
+          password
+        });
+        if ('accessToken' in response) {
+          swal("Success", response.message, "success", {
+            buttons: false,
+            timer: 2000,
+          })
+          .then((value) => {
+            localStorage.setItem('accessToken', response['accessToken']);
+            localStorage.setItem('user', JSON.stringify(response['user']));
+            window.location.href = "/profile";
+          });
+        } else {
+          swal("Failed", response.message, "error");
+        }
+      }
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
