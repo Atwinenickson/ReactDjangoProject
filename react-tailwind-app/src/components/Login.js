@@ -34,23 +34,7 @@ export default function Login() {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const response = await loginUser({
-          username,
-          password
-        });
-        if ('accessToken' in response) {
-          swal("Success", response.message, "success", {
-            buttons: false,
-            timer: 2000,
-          })
-          .then((value) => {
-            localStorage.setItem('accessToken', response['accessToken']);
-            localStorage.setItem('user', JSON.stringify(response['user']));
-            window.location.href = "/profile";
-          });
-        } else {
-          swal("Failed", response.message, "error");
-        }
+        loginUser()
       }
 
   return (
