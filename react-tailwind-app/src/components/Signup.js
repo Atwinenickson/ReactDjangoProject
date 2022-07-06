@@ -21,7 +21,13 @@ export default function Signup(){
 
   //handle Signup API Integration here
   const createAccount=()=>{
-
+    axios.post("http://127.0.0.1:8000/signup/", {
+      phone: signupState,
+      password: signupState
+    })
+    .then((response) => {
+      console.log(response);
+    });
   }
 
     return(
