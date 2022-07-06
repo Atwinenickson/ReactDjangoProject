@@ -13,7 +13,7 @@ fields.forEach(field=>fieldsState[field.id]='');
 const onSuccess = response => console.log(response);
 const onFailure = response => console.error(response);
 
-async function loginUser(credentials) {
+async function loginUser() {
     return (
         <OAuth2Login
         authorizationUrl="http://localhost:8000/o/applications/2/"
