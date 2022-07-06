@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'oauth2_provider',
+    'corsheaders',
     'rest_framework',
     'management_api',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -63,15 +63,15 @@ CORS_ALLOW_CREDENTIALS = True
 ALLOWED_HOSTS = ["127.0.0.1","localhost","192.168.0.50"]
 
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',  # for localhost (REACT Default)
-    'http://localhost:8080', 
-    'http://127.0.0.1:3000',
+    'http://localhost:3000/',  # for localhost (REACT Default)
+    'http://localhost:8080/', 
+    'http://127.0.0.1:3000/',
 )
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',  # for localhost (REACT Default)
-    'http://localhost:8080',
-    'http://127.0.0.1:3000',  # for localhost (Developlemt)
+    'http://localhost:3000/',  # for localhost (REACT Default)
+    'http://localhost:8080/',
+    'http://127.0.0.1:3000/',  # for localhost (Developlemt)
 ]
 
 ROOT_URLCONF = 'management.urls'
